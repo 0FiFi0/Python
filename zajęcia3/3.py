@@ -1,10 +1,42 @@
-functions = ["-","+","*","/"]
-input_function = input("Co chcesz zrobić(“+” - dodawanie, “-” - odejmowanie, “*” - mnożenie, “/” - dzielenie): ")
-if input_function not in functions:
-    print("Nie ma takiej opcji")
-else:
-    input_numbers = input("Podaj a i b (oddzielone przecinkiem)").split(",")
-    if not input_numbers[0].isnumeric() or not input_numbers[1].isnumeric() :
-        print("Błędne dane")
+def add(a, b):
+    return a + b
+
+def sub(a, b):
+    return a - b
+
+def mul(a, b):
+    return a * b
+
+def div(a, b):
+    if b != 0:
+        return a / b
     else:
-        print(input_numbers)
+        return "Nie można dzielić przez zero."
+
+while True:
+    functions = input("Wybierz operację (+, -, *, /). Wpisz 'stop' aby zakończyć działanie: ").lower()
+
+    if functions == "stop":
+        print("Koniec programu.")
+        break
+
+    if functions not in ["+", "-", "*", "/"]:
+        print("Nieprawidłowa operacja. Spróbuj ponownie.")
+        continue
+
+    a = input("Podaj pierwszą liczbę: ")
+    b = input("Podaj drugą liczbę: ")
+
+    if not a.isnumeric() or not b.isnumeric() :
+        print("Błędne dane")
+        continue
+    a = float(a)
+    b = float(b)
+    if functions == "+":
+        print(f"Wynik dodawania: {add(a, b)}")
+    elif functions == "-":
+        print(f"Wynik odejmowania: {sub(a, b)}")
+    elif functions == "*":
+        print(f"Wynik mnożenia: {mul(a, b)}")
+    elif functions == "/":
+        print(f"Wynik dzielenia: {div(a, b)}")
